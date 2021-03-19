@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/list_fragment">
+    <fragment
+        android:id="@+id/list_fragment"
+        android:name="com.muen.notebook.view.ListFragment"
+        android:label="list"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_list_fragment_to_edit_fragment"
+            app:destination="@id/edit_fragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/edit_fragment"
+        android:name="com.muen.notebook.view.EditFragment"
+        android:label="edit"
+        tools:layout="@layout/fragment_edit">
+        <argument
+            android:name="timeCreated"
+            android:defaultValue="-1L"
+            app:argType="long" />
+        <argument
+            android:name="isNewNote"
+            android:defaultValue="true"
+            app:argType="boolean"/>
+        <action
+            android:id="@+id/action_edit_fragment_to_list_fragment"
+            app:destination="@id/list_fragment" />
+    </fragment>
+</navigation>

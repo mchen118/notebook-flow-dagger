@@ -1,0 +1,18 @@
+package com.muen.notebook.repository
+
+import com.muen.notebook.database.Note
+import com.muen.notebook.database.NoteDao
+import com.muen.notebook.di.FragmentScope
+import javax.inject.Inject
+
+@FragmentScope
+class NotebookRepository @Inject constructor(private val dao : NoteDao) {
+
+    fun getNotes() = dao.getNotes()
+
+    suspend fun updateNote(note : Note) = dao.updateNote(note)
+
+    suspend fun insertNote(note : Note) = dao.insertNote(note)
+
+    suspend fun deleteNote(time : Long) = dao.deleteNoteByTimeCreated(time)
+}
