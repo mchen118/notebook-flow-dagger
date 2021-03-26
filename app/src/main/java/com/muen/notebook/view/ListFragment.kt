@@ -56,7 +56,8 @@ class ListFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        // performs field injection
         DaggerFragmentComponent.builder()
                 .applicationContext(requireActivity().application)
                 .timeCreated(-1L)

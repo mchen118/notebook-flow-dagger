@@ -5,6 +5,7 @@ import com.muen.notebook.database.NoteDao
 import com.muen.notebook.di.FragmentScope
 import javax.inject.Inject
 
+// NotebookRepository acts as an intermediary between view model and data sources
 @FragmentScope
 class NotebookRepository @Inject constructor(private val dao : NoteDao) {
 

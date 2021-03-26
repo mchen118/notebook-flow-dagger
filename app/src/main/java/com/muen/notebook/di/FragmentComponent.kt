@@ -10,6 +10,7 @@ import dagger.Component
 @Component(modules = [DatabaseModule::class])
 interface FragmentComponent{
 
+    // tells dagger that ListFragment and EditFragment request (field) injection
     fun inject(listFragment: ListFragment)
 
     fun inject(editFragment: EditFragment)
@@ -17,9 +18,11 @@ interface FragmentComponent{
     @Component.Builder
     interface Builder{
 
+        // adds application context into dependency graph
         @BindsInstance
         fun applicationContext(context: Context): Builder
 
+        // adds timeCreated into dependency graph
         @BindsInstance
         fun timeCreated(time: Long): Builder
 

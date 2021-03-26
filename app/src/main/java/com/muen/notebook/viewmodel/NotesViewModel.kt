@@ -14,6 +14,7 @@ class NotesViewModel @Inject constructor(private val repo: NotebookRepository,
 
     val note: LiveData<Note> = repo.getNotes().transform{
         for (note in it) {
+            // emits a single Note for EditFragment
             if (note.timeCreated == time) emit(note)
         }
     }.asLiveData()

@@ -9,8 +9,9 @@ import dagger.Provides
 @Module
 class DatabaseModule {
 
+    // provider of NotebookDatabase and its NoteDao
     @Provides
-    fun provideAppDatabase(context: Context): NotebookDatabase {
+    fun provideNotebookDatabase(context: Context): NotebookDatabase {
         return NotebookDatabase.getInstance(context)
     }
 

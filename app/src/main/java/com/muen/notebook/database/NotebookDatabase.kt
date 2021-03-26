@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase
 abstract class NotebookDatabase : RoomDatabase() {
     abstract fun noteDao() : NoteDao
 
+    // singleton
     companion object {
         @Volatile private var instance: NotebookDatabase? = null
 
