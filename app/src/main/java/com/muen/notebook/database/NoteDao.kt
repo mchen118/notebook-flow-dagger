@@ -14,6 +14,9 @@ interface NoteDao {
     @Query("Delete From notes where time_created = :time")
     suspend fun deleteNoteByTimeCreated(time : Long)
 
+    @Query("Delete From notes")
+    suspend fun deleteAllNotes()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(note : Note)
 

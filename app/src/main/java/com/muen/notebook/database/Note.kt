@@ -8,8 +8,12 @@ import androidx.room.PrimaryKey
 class Note (@PrimaryKey @ColumnInfo(name = "time_created") val timeCreated : Long,
             @ColumnInfo(name = "content") var noteContent : String){
 
-    fun changeNoteContent(newContent : String) : Note {
+    fun changeNoteContent(newContent: String): Note {
         noteContent = newContent
         return this
+    }
+
+    fun hasSameContentAs(note: Note): Boolean{
+        return this.noteContent == note.noteContent && this.timeCreated == note.timeCreated
     }
 }

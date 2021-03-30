@@ -12,4 +12,5 @@
     <string name="btn_cancel_text">Cancel</string>
     <string name="btn_save_note_text">Save</string>
     <string name="btn_add_new_note_text">New Note</string>
+    <string name="note_edit_text_hint" />
 </resources>

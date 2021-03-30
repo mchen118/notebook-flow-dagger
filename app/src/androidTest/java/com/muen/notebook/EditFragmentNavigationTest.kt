@@ -10,9 +10,12 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.MediumTest
 import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
 import com.google.common.truth.Truth.assertThat
 import com.muen.notebook.view.EditFragment
+import org.junit.After
+import org.junit.AfterClass
 
 import org.junit.Before
 
@@ -20,6 +23,8 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
+@MediumTest
 @RunWith(AndroidJUnit4::class)
 class EditFragmentNavigationTest {
     private val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
@@ -40,6 +45,13 @@ class EditFragmentNavigationTest {
         editFragmentScenario = launchFragmentInContainer<EditFragment>(bundle)
         editFragmentScenario.onFragment { fragment ->
             Navigation.setViewNavController(fragment.requireView(), navController)
+        }
+    }
+
+    @After
+    fun clearDb(){
+        editFragmentScenario.onFragment { fragment ->
+            fragment.deleteAllNotes()
         }
     }
 

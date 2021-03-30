@@ -1,5 +1,6 @@
 package com.muen.notebook.viewmodel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.*
 import com.muen.notebook.database.Note
 import com.muen.notebook.di.FragmentScope
@@ -9,8 +10,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @FragmentScope
-class NotesViewModel @Inject constructor(private val repo: NotebookRepository,
-                                         private val time: Long) : ViewModel(){
+class NotebookViewModel @Inject constructor(private val repo: NotebookRepository,
+                                            private val time: Long) : ViewModel(){
 
     val note: LiveData<Note> = repo.getNotes().transform{
         for (note in it) {
@@ -36,6 +37,13 @@ class NotesViewModel @Inject constructor(private val repo: NotebookRepository,
     fun deleteNote(time: Long) {
         viewModelScope.launch{
             repo.deleteNote(time)
+        }
+    }
+
+    @VisibleForTesting
+    fun deleteAllNotes(){
+        viewModelScope.launch{
+            repo.deleteAllNotes()
         }
     }
 }

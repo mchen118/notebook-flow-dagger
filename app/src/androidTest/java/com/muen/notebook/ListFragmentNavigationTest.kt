@@ -9,17 +9,20 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.MediumTest
 import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
 import com.muen.notebook.view.ListFragment
 import com.google.common.truth.Truth.assertThat
 import com.muen.notebook.adatper.NotesAdapter
 import com.muen.notebook.database.Note
+import org.junit.After
+import org.junit.AfterClass
 import org.junit.Before
-
-
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
+@MediumTest
 @RunWith(AndroidJUnit4::class)
 class ListFragmentNavigationTest {
     private val testText = "test"
@@ -38,7 +41,14 @@ class ListFragmentNavigationTest {
         }
     }
 
-    fun setUpRecyclerView(){
+    @After
+    fun clearDb(){
+        listFragmentScenario.onFragment { fragment ->
+            fragment.deleteAllNotes()
+        }
+    }
+
+    private fun setUpRecyclerView(){
         listFragmentScenario.onFragment{ fragment ->
             fragment.adapter.let{
                 it.submitList(listOf(Note(123456789L, testText)))

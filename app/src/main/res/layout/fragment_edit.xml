@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.muen.notebook.viewmodel.NotesViewModel" />
+            type="com.muen.notebook.viewmodel.NotebookViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,7 +23,9 @@
             android:layout_marginTop="@dimen/default_margin"
             android:gravity="center"
             android:background="@color/tan"
-            android:text="@{viewModel.note.noteContent}"/>
+            android:text="@{viewModel.note.noteContent}"
+            android:inputType="text"
+            android:hint="@string/note_edit_text_hint"/>
 
         <Button
             android:id="@+id/btn_save_note"

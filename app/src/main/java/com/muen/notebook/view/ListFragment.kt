@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@ import com.muen.notebook.adatper.NotesAdapter
 import com.muen.notebook.database.Note
 import com.muen.notebook.databinding.FragmentListBinding
 import com.muen.notebook.di.DaggerFragmentComponent
-import com.muen.notebook.viewmodel.NotesViewModel
+import com.muen.notebook.viewmodel.NotebookViewModel
 import javax.inject.Inject
 
 
@@ -35,7 +36,7 @@ class ListFragment : Fragment() {
 //    }
 
     @Inject
-    lateinit var viewModel: NotesViewModel
+    lateinit var viewModel: NotebookViewModel
 
     @Inject
     lateinit var adapter: NotesAdapter
@@ -87,5 +88,10 @@ class ListFragment : Fragment() {
         viewModel.insertNote(Note(time, ""))
         findNavController().navigate(
             ListFragmentDirections.actionListFragmentToEditFragment(time, true))
+    }
+
+    @VisibleForTesting
+    fun deleteAllNotes(){
+        viewModel.deleteAllNotes()
     }
 }

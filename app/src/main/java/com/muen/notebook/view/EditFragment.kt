@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.muen.notebook.database.Note
 import com.muen.notebook.databinding.FragmentEditBinding
 import com.muen.notebook.di.DaggerFragmentComponent
-import com.muen.notebook.viewmodel.NotesViewModel
+import com.muen.notebook.viewmodel.NotebookViewModel
 import javax.inject.Inject
 
 class EditFragment : Fragment() {
@@ -45,7 +46,7 @@ class EditFragment : Fragment() {
 //    }
 
     @Inject
-    lateinit var viewModel: NotesViewModel
+    lateinit var viewModel: NotebookViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -75,5 +76,10 @@ class EditFragment : Fragment() {
 
         findNavController().navigate(
             EditFragmentDirections.actionEditFragmentToListFragment())
+    }
+
+    @VisibleForTesting
+    fun deleteAllNotes(){
+        viewModel.deleteAllNotes()
     }
 }
